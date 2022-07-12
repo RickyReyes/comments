@@ -7,12 +7,26 @@
   font-weight: 400;
 }
 
-.App {
+body {
   background-color: #f5f6fa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App {
+  max-width: 675px;
 }
 
 .comments-container {
-  padding: 5rem 1.5rem;
+  padding: 2rem 1.5rem;
   list-style-type: none;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -73,7 +87,7 @@
 }
 
 .comment-content {
-  font-size: .95rem;
+  font-size: 0.975rem;
   padding: 1rem 0;
   color: #67727e;
   line-height: 1.5rem;
@@ -97,9 +111,13 @@
       -ms-flex-align: center;
           align-items: center;
   background-color: #f5f6fa;
-  padding: 0.5rem 0.75rem;
-  gap: .75rem;
   border-radius: 5px;
+  gap: .5rem;
+}
+
+.comment-votes-container > img {
+  cursor: pointer;
+  padding: 0.95rem .85rem;
 }
 
 .comment-score {
@@ -125,8 +143,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: .9rem;
   gap: .4rem;
+  font-size: 1rem;
 }
 
 .comment-action-button.delete {
@@ -155,12 +173,13 @@ textarea {
 }
 
 .new-comment-send {
+  font-size: 1rem;
   text-transform: uppercase;
   border: 0;
   border-radius: 5px;
   background-color: #5457b6;
   color: white;
   font-weight: 700;
-  padding: .75rem 1.5rem;
+  padding: .875rem 1.75rem;
 }
 /*# sourceMappingURL=App.css.map */

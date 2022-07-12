@@ -1,7 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Comment({currentUser, user, score, content, createdAt, isReply, replyingTo }) {
-  console.log(isReply)
+  const [vote, setVote] = useState(null)
+  const [currentScore, setCurrentScore] = useState(score)
+
+  function handleVote(upOrDown) {
+    if (upOrDown == "up" && !vote) {
+      console.log(1)
+      setCurrentScore(prevScore => prevScore + 1)
+      setVote("up")
+    }
+    if (upOrDown == "down" && !vote) {
+      console.log(2)
+      setCurrentScore(prevScore => prevScore - 1)
+      setVote("down")
+    }
+    if (upOrDown == "down" && vote == "up") {
+      console.log(3)
+      setCurrentScore(prevScore => prevScore - 2)
+      setVote("down")
+    }
+    if (upOrDown == "up" && vote == "down") {
+      console.log(4)
+      setCurrentScore(prevScore => prevScore + 2)
+      setVote("up")
+    }
+    if (upOrDown == vote) {
+      setCurrentScore(prevScore => {
+        return vote == "up" ? prevScore - 1 : prevScore + 1
+      })
+      setVote(null)
+    }
+  }
+
   return (
     <li className="comment">
       <div className="comment-header">
@@ -16,9 +47,15 @@ export default function Comment({currentUser, user, score, content, createdAt, i
         {isReply && <span className="comment-replying-to">@{replyingTo}</span>} {content}</p>
       <div className="comment-footer">
         <div className="comment-votes-container">
-          <img src="./images/icon-plus.svg" />
-          <p className="comment-score">{score}</p>
-          <img src="./images/icon-minus.svg" />
+          <img 
+            style={{filter: vote == "up" ? "invert(17%) sepia(86%) saturate(621%) hue-rotate(95deg) brightness(52%) contrast(101%)" : "none"}}
+            src="./images/icon-plus.svg" 
+            onClick={() => handleVote("up")} />
+          <p className="comment-score">{currentScore}</p>
+          <img 
+            style={{filter: vote == "down" ? "invert(7%) sepia(90%) saturate(7500%) hue-rotate(2deg) brightness(97%) contrast(106%)" : "none"}} 
+            src="./images/icon-minus.svg" 
+            onClick={() => handleVote("down")} />
         </div>
         {currentUser.username == user.username ? 
         <div className="comment-action-button-container">
