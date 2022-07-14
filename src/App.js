@@ -1,13 +1,19 @@
+import { useState } from 'react';
 import './App.css';
 import Comment from './components/Comment';
 import NewComment from './components/NewComment';
 import data from "./data.json"
 
 function App() {
+  const [comments, setComments] = useState(data.comments.map(comment => ({
+    ...comment,
+    id: Date.now()
+  })))
+  const [currentUser, setCurrentUser] = useState(data.currentUser)
   return (
     <div className="App">
       <ul className="comments-container">
-        {data.comments.map(comment => (
+        {comments.map((comment) => (
           <>
             <Comment 
               key={comment.id}
@@ -25,7 +31,10 @@ function App() {
               </ul>}
           </>
         ))}
-        <NewComment currentUser={data.currentUser} />
+        <NewComment 
+          comments={comments}
+          setComments={setComments}
+          currentUser={data.currentUser} />
       </ul>
     </div>
       

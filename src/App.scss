@@ -96,7 +96,6 @@ body {
     gap: .5rem;
     & > img {
         cursor: pointer;
-        // border: 1px solid blue;
         padding: 0.95rem .85rem;
     }
 }
@@ -149,4 +148,5 @@ textarea {
     color: $white;
     font-weight: 700;
     padding: .875rem 1.75rem;
+    cursor: pointer;
 }

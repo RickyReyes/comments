@@ -6,22 +6,18 @@ export default function Comment({currentUser, user, score, content, createdAt, i
 
   function handleVote(upOrDown) {
     if (upOrDown == "up" && !vote) {
-      console.log(1)
       setCurrentScore(prevScore => prevScore + 1)
       setVote("up")
     }
     if (upOrDown == "down" && !vote) {
-      console.log(2)
       setCurrentScore(prevScore => prevScore - 1)
       setVote("down")
     }
     if (upOrDown == "down" && vote == "up") {
-      console.log(3)
       setCurrentScore(prevScore => prevScore - 2)
       setVote("down")
     }
     if (upOrDown == "up" && vote == "down") {
-      console.log(4)
       setCurrentScore(prevScore => prevScore + 2)
       setVote("up")
     }
